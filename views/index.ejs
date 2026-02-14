@@ -1,45 +1,129 @@
 <!doctype html>
-<html>
+<html lang="ru">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>My Diary</title>
     <link rel="stylesheet" href="/public/style.css" />
   </head>
-  <body class="container">
-    <header class="header">
-      <h1>Дневник</h1>
-      <a class="link" href="/logout">Выйти</a>
+  <body class="page">
+    <div class="bg"></div>
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">✦</div>
+        <div>
+          <div class="title">My Diary</div>
+          <div class="subtitle">дневник • цели • метрики</div>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button id="themeToggle" class="btn ghost" title="Сменить тему">🌓</button>
+        <a class="btn ghost" href="/logout" title="Выйти">Выйти</a>
+      </div>
     </header>
 
-    <div class="grid">
-      <section class="card">
-        <h2>Запись дня</h2>
-
-        <div class="row">
-          <input id="date" type="date" />
-          <button id="load">Открыть</button>
-          <button id="save">Сохранить</button>
+    <main class="container">
+      <section class="hero">
+        <div class="hero-left">
+          <h1>Сегодняшний фокус</h1>
+          <p class="muted">Заполни запись, обнови прогресс целей и отметь метрики — всё в одном месте.</p>
         </div>
 
-        <textarea id="content" rows="12" placeholder="Что было сегодня?"></textarea>
-        <div id="status" class="muted"></div>
-      </section>
+        <div class="hero-right card mini">
+          <div class="row wrap">
+            <div class="field" style="margin:0; min-width: 160px;">
+              <label>Дата</label>
+              <input id="date" type="date" />
+            </div>
+            <div class="field" style="margin:0; min-width: 160px;">
+              <label>Настроение</label>
+              <select id="mood">
+                <option value="">—</option>
+                <option value="1">1 😣</option>
+                <option value="2">2 😕</option>
+                <option value="3">3 😐</option>
+                <option value="4">4 🙂</option>
+                <option value="5">5 😄</option>
+              </select>
+            </div>
 
-      <section class="card">
-        <h2>Последние записи</h2>
-        <ul id="entries" class="list"></ul>
-      </section>
-
-      <section class="card">
-        <h2>Цели</h2>
-        <div class="row">
-          <input id="goalText" placeholder="Новая цель..." />
-          <button id="addGoal">Добавить</button>
+            <div class="actions">
+              <button id="load" class="btn ghost">Открыть</button>
+              <button id="save" class="btn primary">Сохранить</button>
+            </div>
+          </div>
+          <div id="status" class="muted" style="margin-top:10px;"></div>
         </div>
-        <ul id="goals" class="list"></ul>
       </section>
-    </div>
 
+      <div class="grid">
+        <section class="card">
+          <div class="card-head">
+            <h2>Запись дня</h2>
+            <div class="hint">Заголовок + текст</div>
+          </div>
+
+          <div class="field">
+            <label>Заголовок</label>
+            <input id="title" placeholder="Коротко: что было важного?" />
+          </div>
+
+          <div class="field" style="margin-bottom:0;">
+            <label>Текст</label>
+            <textarea id="content" rows="12" placeholder="Что было сегодня? Что сделал? Что почувствовал?"></textarea>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <h2>Ежедневные метрики</h2>
+            <div class="hint">push-ups, чтение, вода…</div>
+          </div>
+
+          <div class="chips" id="presetChips"></div>
+
+          <div class="row wrap" style="margin-top:10px;">
+            <input id="metricName" placeholder="Название (например: отжимания)" />
+            <input id="metricUnit" placeholder="Ед. (раз, мин, л...)" />
+            <button id="addMetric" class="btn ghost">Добавить</button>
+          </div>
+
+          <div id="metrics" class="stack" style="margin-top:12px;"></div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <h2>Цели с прогрессом</h2>
+            <div class="hint">частями, не только “сделал/не сделал”</div>
+          </div>
+
+          <div class="row wrap">
+            <input id="goalText" placeholder="Новая цель..." />
+            <input id="goalTarget" type="number" step="1" min="1" placeholder="Цель (например 100)" />
+            <input id="goalUnit" placeholder="Ед. (раз, стр, ч...)" />
+            <button id="addGoal" class="btn ghost">Добавить</button>
+          </div>
+
+          <div id="goals" class="stack" style="margin-top:12px;"></div>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <h2>Последние записи</h2>
+            <div class="hint">клик — открыть</div>
+          </div>
+          <div id="entries" class="stack"></div>
+        </section>
+      </div>
+
+      <footer class="footer muted">
+        Локальный проект для себя. Если будешь вести серьёзно — лучше хранить данные в Postgres (Supabase) вместо SQLite на Render Free.
+      </footer>
+    </main>
+
+    <script src="/public/theme.js"></script>
     <script src="/public/app.js"></script>
   </body>
 </html>
