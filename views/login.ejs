@@ -1,31 +1,44 @@
 <!doctype html>
-<html>
+<html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Вход</title>
     <link rel="stylesheet" href="/public/style.css" />
   </head>
-  <body class="container">
-    <div class="card">
-      <h1>Вход</h1>
+  <body class="page">
+    <div class="bg"></div>
 
-      <% if (error) { %>
-        <div class="error"><%= error %></div>
-      <% } %>
+    <main class="center">
+      <div class="card auth">
+        <div class="brand">
+          <div class="logo">✦</div>
+          <div>
+            <h1 style="margin:0;">My Diary</h1>
+            <p class="muted" style="margin:4px 0 0;">Личный дневник и цели</p>
+          </div>
+        </div>
 
-      <form method="POST" action="/login" class="form">
-        <label>Логин</label>
-        <input name="username" autocomplete="username" required />
+        <% if (error) { %>
+          <div class="notice error"><%= error %></div>
+        <% } %>
 
-        <label>Пароль</label>
-        <input name="password" type="password" autocomplete="current-password" required />
+        <form method="POST" action="/login" class="form" style="margin-top:10px;">
+          <label>Логин</label>
+          <input name="username" autocomplete="username" required />
 
-        <button type="submit">Войти</button>
-      </form>
+          <label style="margin-top:10px;">Пароль</label>
+          <input name="password" type="password" autocomplete="current-password" required />
 
-      <p class="muted" style="margin-top:10px;">
-        Данные входа берутся из файла <code>.env</code>.
-      </p>
-    </div>
+          <button class="btn primary" type="submit" style="margin-top:14px; width:100%;">Войти</button>
+        </form>
+
+        <p class="muted" style="margin-top:10px;">
+          Данные входа задаются в переменных окружения / <code>.env</code>.
+        </p>
+      </div>
+    </main>
+
+    <script src="/public/theme.js"></script>
   </body>
 </html>
