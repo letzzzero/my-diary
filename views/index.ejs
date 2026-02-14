@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>My Diary</title>
+    <link rel="stylesheet" href="/public/style.css" />
+  </head>
+  <body class="container">
+    <header class="header">
+      <h1>Дневник</h1>
+      <a class="link" href="/logout">Выйти</a>
+    </header>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Запись дня</h2>
+
+        <div class="row">
+          <input id="date" type="date" />
+          <button id="load">Открыть</button>
+          <button id="save">Сохранить</button>
+        </div>
+
+        <textarea id="content" rows="12" placeholder="Что было сегодня?"></textarea>
+        <div id="status" class="muted"></div>
+      </section>
+
+      <section class="card">
+        <h2>Последние записи</h2>
+        <ul id="entries" class="list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Цели</h2>
+        <div class="row">
+          <input id="goalText" placeholder="Новая цель..." />
+          <button id="addGoal">Добавить</button>
+        </div>
+        <ul id="goals" class="list"></ul>
+      </section>
+    </div>
+
+    <script src="/public/app.js"></script>
+  </body>
+</html>
